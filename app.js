@@ -83,7 +83,6 @@ if (window.location.pathname.includes("dashboard.html")) {
   .catch(err => {
     console.error("DASHBOARD ERROR:", err);
   });
-}
 
   localStorage.clear();
   window.location.href = "index.html";
