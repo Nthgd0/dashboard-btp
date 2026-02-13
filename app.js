@@ -11,7 +11,7 @@ function login() {
   .then(res => res.json())
   .then(data => {
     if (data.success) {
-      localStorage.setItem("entreprise_id", data.entreprise_id);
+      localStorage.setItem("licence_key", licence);
       window.location.href = "dashboard.html";
     } else {
       document.getElementById("error").innerText = "Clé invalide";
