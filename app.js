@@ -30,7 +30,7 @@ if (window.location.pathname.includes("dashboard.html")) {
   fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ entreprise_id })
+    body: JSON.stringify({ licence_key })
   })
   .then(res => res.json())
   .then(data => {
