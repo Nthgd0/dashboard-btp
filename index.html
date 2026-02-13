@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard Devis</title>
+<style>
+body {
+  font-family: Arial;
+  margin: 40px;
+}
+input, button {
+  padding: 8px;
+  margin: 5px 0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+th {
+  background: #f4f4f4;
+}
+</style>
+</head>
+<body>
+
+<h1>📊 Espace Entreprise</h1>
+
+<input type="text" id="cle" placeholder="Entrez votre clé d'accès">
+<button onclick="chargerDevis()">Voir mes devis</button>
+
+<div id="resultat"></div>
+
+<script>
+async function chargerDevis() {
+  const cle = document.getElementById("cle").value;
+
+  const res = await fetch("https://TON-N8N-URL/webhook/devis-liste?licence_key=" + cle);
+  const data = await res.json();
+
+  if (!data.success) {
+    document.getElementById("resultat").innerHTML = "<p>Accès refusé.</p>";
+    return;
+  }
+
+  let html = "<table><tr><th>N°</th><th>Date</th><th>Total TTC</th><th>Statut</th><th>PDF</th></tr>";
+
+  data.devis.forEach(d => {
+    html += `
+      <tr>
+        <td>${d.numero}</td>
+        <td>${new Date(d.date).toLocaleDateString()}</td>
+        <td>${d.total_ttc} €</td>
+        <td>${d.statut}</td>
+        <td><a href="${d.pdf}" target="_blank">Télécharger</a></td>
+      </tr>
+    `;
+  });
+
+  html += "</table>";
+  document.getElementById("resultat").innerHTML = html;
+}
+</script>
+
+</body>
+</html>
