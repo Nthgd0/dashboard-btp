@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+  <h2>Tableau de bord</h2>
+  <button onclick="logout()">Déconnexion</button>
+</div>
+
+<div class="stats">
+  <div class="card">
+    <h3>Nombre de devis</h3>
+    <p id="count">0</p>
+  </div>
+
+  <div class="card">
+    <h3>Total généré</h3>
+    <p id="total">0 €</p>
+  </div>
+</div>
+
+<h3>Liste des devis</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Numéro</th>
+      <th>Date</th>
+      <th>Total TTC</th>
+      <th>PDF</th>
+    </tr>
+  </thead>
+  <tbody id="devisTable"></tbody>
+</table>
+
+<script src="app.js"></script>
+</body>
+</html>
